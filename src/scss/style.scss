@@ -1,0 +1,751 @@
+//===================================================
+// メディアクエリ
+// ==================================================
+$breakpoints: (
+	'sm': 'screen and (max-width: 900px)',
+	'md': 'screen and (max-width: 1300px)'
+) !default;
+
+@mixin mq($breakpoint: sm) {
+	@media #{map-get($breakpoints, $breakpoint)} {
+		@content;
+	}
+}
+
+// ==================================================
+// 変数
+// ==================================================
+
+
+//カラー
+$backgroud-dark: #151515;
+$backgroud-light: #222222;
+$heading: #ffffff;
+$text: #e9e9e9;
+$border: #393939;
+
+//文字の大きさ
+$font-size_s: 12px;
+$font-size_m: 14px;
+$font-size_default: 16px;
+$font-size_l: 18px;
+$font-size_xl: 20px;
+$font-size_xxl: 24px;
+$font-size_3l: 30px;
+
+//余白
+$space_s: 5px;
+$space_m: 10px;
+$space_l: 15px;
+$space_xl: 20px;
+$space_xxl: 25px;
+$space_3l: 30px;
+
+//font
+$font-family: 'Montserrat', sans-serif;
+
+// ==================================================
+// サイト全体の設定
+// ==================================================
+
+
+body {
+	margin: 0;
+	line-height: 1.5;
+	font-size: $font-size_default;
+	letter-spacing: 0.08em;
+	color: $text
+}
+a {
+	text-decoration: none;
+	color: $text;
+}
+* {
+	outline: 0;
+	text-decoration: none;
+	box-sizing: border-box;
+}
+ul,li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+h1,h2,h3,p {
+	margin: 0;
+}
+::before,::after {
+	box-sizing: border-box;
+}
+
+// ==================================================
+// content
+// ==================================================
+
+
+.content {
+	position: relative;
+}
+
+// ==================================================
+// section
+// ==================================================
+
+
+.section {
+	display: block;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	& .container {
+		padding-bottom: 70px;
+	}
+	&-title {
+		max-width: 100%;
+		font-size: 22px;
+		font-family: 'Rubik', sans-serif;
+		font-weight: 700;
+		position: relative;
+		margin-bottom: 60px;
+		color: $heading;
+		
+		&::before,
+		&::after {
+			content: '';
+			height: 4px;
+			position: absolute;
+			background: #ec1839;
+			top: 100%;
+			left: 0;
+		}
+		
+		&::before {
+			width: 50px;
+		}
+		&::after {
+			width: 25px;
+			margin-top: 8px;
+		}
+	}
+}
+
+// ==================================================
+// container
+// ==================================================
+
+
+.container {
+	max-width: 1080px;
+	width: 100%;
+	margin: auto;
+}
+
+// ==================================================
+// サイドバー
+// ==================================================
+
+
+.side {
+	width: 270px;
+	background: $backgroud-light;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	height: 100%;
+	border-right: 1px solid $border;
+	padding: 30px;
+	transition: .4s;
+	
+	@include mq(md) {
+		position: fixed;
+		top: 0;
+		left: -100%;
+	}
+	
+	& .title {
+		padding: 30px 0;
+		font-weight: bold;
+		
+		@include mq(md) {
+			padding-top: 80px;
+		}
+		
+		&-link {
+			font-size: 30px;
+			color: $heading;
+			font-family: 'Rubik', sans-serif;
+			font-weight: 700;
+			text-decoration: none;
+			display: inline-block;
+			position: relative;
+			padding: 0 10px;
+			line-height: 50px;
+			cursor: pointer;
+			
+			&::before,
+			&::after {
+				content: '';
+				height: 20px;
+				width: 20px;
+				position: absolute;
+			}
+			
+			&::before {
+				top: 0;
+				left: 0;
+				border-top: 4px solid #ec1839;
+				border-left: 4px solid #ec1839;
+			}
+			
+			&::after {
+				bottom: 0;
+				right: 0;
+				border-right: 4px solid #ec1839;
+				border-bottom: 4px solid #ec1839;
+			}
+		}
+	}
+}
+
+// ==================================================
+// メニュー
+// ==================================================
+
+
+.nav {
+	margin: 80px 0;
+	
+	&-item {
+		display: block;
+	}
+	
+	&-link {
+		font-size: $font-size_default;
+		text-decoration: none;
+		line-height: 45px;
+		display: block;
+		border-bottom: 1px solid $border;
+		cursor: pointer;
+		transition: .3s;
+		-webkit-transition: .3s;
+		
+		&:hover {
+			padding-left: $space_s;
+			color: #ec1839;
+		}
+	}
+	
+	&-icon {
+		padding-right: $space_s;
+	}
+}
+
+// ==================================================
+// sp用メニュー
+// ==================================================
+
+
+.toggle-menu {
+	width: 45px;
+	height: 40px;
+	border: 1px solid $border;
+	cursor: pointer;
+	position: fixed;
+	top: 3%;
+	left: 3%;
+	z-index: 3;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #ec1839;
+	text-align: center;
+	display: none;
+	
+	@include mq(md) {
+		display: block;
+	}
+	
+	&:hover {
+		cursor: pointer;
+	}
+	
+	&-line {
+		height: 2px;
+		width: 18px;
+		display: inline-block;
+		background: #ec1839;
+		position: absolute;
+		left: 12px;
+		
+		&:nth-of-type(1) {
+			top: 12px;
+		}
+		
+		&:nth-of-type(2) {
+			top: 18px;
+		}
+		
+		&:nth-of-type(3) {
+			top: 24px;
+		}
+		
+		
+		@include mq(md) {
+		}
+	}
+}
+
+// ==================================================
+//copyright
+// ==================================================
+
+
+.copyright {
+	font-size: $font-size_s;
+	text-align: center;
+}
+
+// ==================================================
+//main
+// ==================================================
+
+
+.main {
+	padding-left: 270px;
+	background: $backgroud-dark;
+	
+	@include mq(md) {
+		padding-left: inherit;
+	}
+}
+
+// ==================================================
+//home section
+// ==================================================
+
+
+.home {
+	display: flex;
+	padding-top: 120px;
+}
+
+// ==================================================
+//intro
+// ==================================================
+
+
+.intro {
+	text-align: center;
+	&-img {
+		height: 200px;
+		width: 200px;
+		border-radius: 50%;
+		display: inline-block;
+		border: 8px solid #fff;
+	}
+	&-name {
+		font-size: 26px;
+		font-family: 'Rubik', sans-serif;
+		font-weight: 700;
+		margin: $space_xl 0 $space_s;
+	}
+	&-description {
+		font-size: $font-size_default;
+		font-weight: 500;
+		margin: 0;
+		line-height: 22px;
+	}
+}
+
+// ==================================================
+//about section
+// ==================================================
+
+
+.about {
+	&-content {
+		flex: 0 0 100%;
+		max-width: 100%;
+		padding-left: $space_xl;
+		
+		@include mq(md) {
+			padding-left: inherit;
+		}
+	}
+	&-txt {
+		max-width: 100%;
+		margin-bottom: $space_l;
+	}
+	&-name {
+		font-size: 22px;
+		margin-bottom: $space_l;
+		font-weight: 700;
+	}
+	&-description {
+		font-size: $font-size_default;
+		line-height: 25px;
+	}
+}
+
+// ==================================================
+// personal-info
+// ==================================================
+
+.personal-info {
+	margin-top: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	&-item {
+		max-width: 40%;
+		width: 100%;
+		margin-bottom: $space_m;
+		border-bottom: 1px solid #eee;
+		padding-bottom: $space_s;
+		
+		@include mq() {
+			max-width: 100%;
+		}
+	}
+	&-txt {
+		font-size: $font-size_m;
+	}
+	&-txtHead {
+		font-weight: bold;
+	}
+}
+
+// ==================================================
+// carrer
+// ==================================================
+
+
+.career {
+	padding-top: $space_3l;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	&-title {
+		font-size: $font-size_xl;
+		margin-bottom: $space_l;
+	}
+	&-wrap {
+		width: 49%;
+		min-height: 510px;
+		
+		@include mq() {
+			width: 100%;
+			min-height: inherit;
+		}
+	}
+	&-list {
+		border: 1px solid $text;
+		padding: $space_l;
+		border-radius: 15px;
+		min-height: 460px;
+		
+		@include mq() {
+			min-height: inherit;
+			margin-bottom: $space_xxl;
+		}
+	}
+	&-item {
+		margin-bottom: $space_3l;
+	}
+	&-year {
+		margin-bottom: $space_m;
+		font-size: $font-size_m;
+		&::before {
+			content: '\f073';
+			font-weight: bold;
+			font-family: "Font Awesome 5 Free";
+			padding-right: $space_m;
+		}
+	}
+	&-subTitle {
+		font-weight: bold;
+		margin-bottom: $space_xl;
+	}
+}
+
+// ==================================================
+// article
+// ==================================================
+
+
+.article {
+	width: 32.5%;
+	border: 1px solid #444;
+	
+	@include mq(md) {
+		margin: $space_3l auto;
+	}
+	
+	@include mq() {
+		width: 90%;
+	}
+	&-group {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+	&-img {
+		width: 100%;
+		height: 220px;
+		vertical-align: bottom;
+		
+		@include mq() {
+			height: 300px;
+		}
+	}
+	&-body {
+		padding: $space_s;
+		text-align: center;
+		background: $backgroud-dark;
+		border-bottom: 1px solid #444;
+		
+		@include mq() {
+			padding: $space_m;
+		}
+	}
+	&-foot {
+		padding: $space_m;
+		
+		@include mq() {
+			padding: $space_l;
+			min-height: 150px;
+		}
+	}
+	&-link {
+		cursor: pointer;
+		text-decoration: underline;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+// ==================================================
+// work
+// ==================================================
+
+
+.work {
+	display: block;
+	border: 1px solid #444;
+	width: 32.5%;
+	height: 230px;
+	transition: .3s;
+	position: relative;
+	&:hover {
+		cursor: pointer;
+	}
+	
+	@include mq() {
+		width: 80%;
+		margin: $space_3l auto;
+		height: 300px;
+		
+	}
+	
+	&-group {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+	&-img {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+// ==================================================
+// thumnailCover
+// ==================================================
+
+.thumnailCover {
+	background: rgba(0, 0, 0, .6);
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	transition: .25s;
+	transform: scale(1.2);
+	opacity: 0;
+	
+	@include mq() {
+		opacity: 1;
+	}
+	
+	&:hover {
+		opacity: 1;
+		transform: scale(1);
+		transition: .25s;
+	}
+	
+	&-icon {
+		position: absolute;
+		top: 45%;
+		left: 48%;
+		color: #fff;
+		font-size: 24px;
+	}
+}
+
+// ==================================================
+// form
+// ==================================================
+
+
+.form {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+	
+	@include mq() {
+		width: 96%;
+	}
+	&-input,
+	&-textarea {
+		width: 100%;
+		border: none;
+		border-radius: 3px;
+		font-size: $font-size_l;
+		background: #f6f5f4;
+		margin-bottom: $space_l;
+		padding: $space_m;
+	}
+	&-input {
+		height: 60px;
+	}
+	&-textarea {
+		height: 500px;
+	}
+}
+
+// ==================================================
+// ボタン
+// ==================================================
+
+
+.btn {
+	font-weight: bold;
+	&:hover {
+		cursor: pointer;
+	}
+	&-submit {
+		float: right;
+		width: 150px;
+		background: #333;
+		color: #fff;
+		border: none;
+		padding: $space_l $space_m;
+		
+		@include mq() {
+			width: 100%;
+		}
+		&:hover {
+			background: #444;
+		}
+	}
+}
+
+// ==================================================
+//modal window
+// ==================================================
+
+.modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 4;
+	color: #444;
+	&-content {
+		background: #f6f5f4;
+		padding: 40px;
+		width: 100%;
+		max-width: 840px;
+		border-radius: 8px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		box-sizing: border-box;
+		z-index: 5;
+		overflow: hidden;
+	}
+	&-bg {
+		background: rgba(0, 0, 0, .8);
+		height: 100%;
+		position: fixed;
+		width: 100%;
+	}
+	&-wrap {
+		margin-top: 50px;
+	}
+	&-head {
+		text-align: center;
+    position: relative;
+    max-width: 350px;
+    margin: $space_3l auto;
+	}
+	&-img {
+		max-width: 300px;
+		width: 100%;
+		height: 200px;
+		vertical-align: bottom;
+		background: rgba(0, 0, 0, .6);
+	}
+	&-thumnailCover {
+		background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+	}
+	&-bold {
+		font-weight: bold;
+	}
+	&-foot {
+		margin-top: $space_l;
+	}
+}
+
+// ==================================================
+// その他
+// ==================================================
+
+
+.is-active {
+	transition: .4s;
+	left: 0;
+	
+	& .toggle-menu {
+		&-line {
+			&:nth-of-type(1) {
+				transition: .3s;
+				transform: translateY(7px) rotate(-45deg);
+			}
+			&:nth-of-type(2) {
+				display: none;
+			}
+			&:nth-of-type(3) {
+				transition: .3s;
+				transform: translateY(-5px) rotate(45deg);
+			}
+		}
+	}
+}
+
+.shadow-dark {
+	box-shadow: 0 0 20px rgba(48, 46, 77, .15);
+}
