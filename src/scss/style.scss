@@ -659,66 +659,120 @@ h1,h2,h3,p {
 //modal window
 // ==================================================
 
+// .modal {
+// 	display: none;
+// 	position: fixed;
+// 	top: 0;
+// 	right: 0;
+// 	width: 100%;
+// 	height: 100%;
+// 	z-index: 4;
+// 	color: #444;
+// 	&-content {
+// 		background: #f6f5f4;
+// 		padding: 40px;
+// 		width: 100%;
+// 		max-width: 840px;
+// 		border-radius: 8px;
+// 		position: absolute;
+// 		top: 50%;
+// 		left: 50%;
+// 		transform: translate(-50%, -50%);
+// 		box-sizing: border-box;
+// 		z-index: 5;
+// 		overflow: hidden;
+// 	}
+// 	&-bg {
+// 		background: rgba(0, 0, 0, .8);
+// 		height: 100%;
+// 		position: fixed;
+// 		width: 100%;
+// 	}
+// 	&-wrap {
+// 		margin-top: 50px;
+// 	}
+// 	&-head {
+// 		text-align: center;
+//     position: relative;
+//     max-width: 350px;
+//     margin: $space_3l auto;
+// 	}
+// 	&-img {
+// 		max-width: 300px;
+// 		width: 100%;
+// 		height: 200px;
+// 		vertical-align: bottom;
+// 		background: rgba(0, 0, 0, .6);
+// 	}
+// 	&-thumnailCover {
+// 		background: rgba(0, 0, 0, 0.6);
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     right: 0;
+//     left: 0;
+// 	}
+// 	&-bold {
+// 		font-weight: bold;
+// 	}
+// 	&-foot {
+// 		margin-top: $space_l;
+// 	}
+// }
+
+// ==================================================
+// その他
+// ==================================================
+
 .modal {
-	display: none;
-	position: fixed;
-	top: 0;
-	right: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 4;
-	color: #444;
-	&-content {
-		background: #f6f5f4;
-		padding: 40px;
-		width: 100%;
-		max-width: 840px;
-		border-radius: 8px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		box-sizing: border-box;
-		z-index: 5;
-		overflow: hidden;
-	}
+  display: none;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+	
 	&-bg {
-		background: rgba(0, 0, 0, .8);
-		height: 100%;
-		position: fixed;
 		width: 100%;
+	  height: 100%;
+	  background-color: rgba(30,30,30,0.9);
 	}
-	&-wrap {
-		margin-top: 50px;
+	
+	&-wrapper {
+		position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform:translate(-50%,-50%);
+	  width: 70%;
+	  max-width: 500px;
+	  padding: 10px 30px;
+	  background-color: #fff;
 	}
-	&-head {
-		text-align: center;
-    position: relative;
-    max-width: 350px;
-    margin: $space_3l auto;
-	}
-	&-img {
-		max-width: 300px;
-		width: 100%;
-		height: 200px;
-		vertical-align: bottom;
-		background: rgba(0, 0, 0, .6);
-	}
-	&-thumnailCover {
-		background: rgba(0, 0, 0, 0.6);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-	}
-	&-bold {
-		font-weight: bold;
-	}
-	&-foot {
-		margin-top: $space_l;
+	
+	&-close {
+		position: absolute;
+	  top: 0.5rem;
+	  right: 1rem;
+	  cursor: pointer;
 	}
 }
+
+/* 以下ボタンスタイル */
+// button {
+//   padding: 10px;
+//   background-color: #fff;
+//   border: 1px solid #282828;
+//   border-radius: 2px;
+//   cursor: pointer;
+// }
+//
+// #openModal {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform:translate(-50%,-50%);
+// }
 
 // ==================================================
 // その他
